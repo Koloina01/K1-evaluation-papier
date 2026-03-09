@@ -26,3 +26,10 @@ FROM Reparation r
 JOIN Modele_voiture mv ON r.id_modele_voiture = mv.id
 GROUP BY mv.marque, mv.modele;
 
+SELECT
+100.0 * SUM(CASE WHEN mv.modele='RANGER' THEN 1 ELSE 0 END) / COUNT(*) AS nbre_reparation_ranger,
+100.0 * SUM(CASE WHEN mv.modele='EVEREST' THEN 1 ELSE 0 END) / COUNT(*) AS nbre_reparation_everest,
+100.0 * SUM(CASE WHEN mv.modele='YUKON' THEN 1 ELSE 0 END) / COUNT(*) AS nbre_reparation_yukon,
+100.0 * SUM(CASE WHEN mv.modele='RAM' THEN 1 ELSE 0 END) / COUNT(*) AS nbre_reparation_ram
+FROM Reparation r
+JOIN Modele_voiture mv ON r.id_modele_voiture = mv.id;
