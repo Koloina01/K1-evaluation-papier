@@ -20,3 +20,9 @@ CREATE TABLE Reparation (
     FOREIGN KEY (id_mecanicien) REFERENCES Mecanicien(id),
     FOREIGN KEY (id_modele_voiture) REFERENCES Modele_voiture(id)
 );
+
+SELECT mv.marque, mv.modele, COUNT(r.id) AS nbre_reparation
+FROM Reparation r
+JOIN Modele_voiture mv ON r.id_modele_voiture = mv.id
+GROUP BY mv.marque, mv.modele;
+
