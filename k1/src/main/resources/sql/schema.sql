@@ -33,3 +33,9 @@ SELECT
 100.0 * SUM(CASE WHEN mv.modele='RAM' THEN 1 ELSE 0 END) / COUNT(*) AS nbre_reparation_ram
 FROM Reparation r
 JOIN Modele_voiture mv ON r.id_modele_voiture = mv.id;
+
+SELECT mv.marque, m.nom AS nom_mecanicien, SUM(r.cout) AS cout_reparation
+FROM Reparation r
+JOIN Mecanicien m ON r.id_mecanicien = m.id
+JOIN Modele_voiture mv ON r.id_modele_voiture = mv.id
+GROUP BY mv.marque, m.nom;
